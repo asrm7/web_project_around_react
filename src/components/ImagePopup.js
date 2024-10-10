@@ -14,7 +14,7 @@ export default function ImagePopup({ card, onClose }) {
                 onClick={onClose}
             />
             <img src={card.link} alt={card.name} className="popup__fullImg"  />
-            <p className="popup__footer"></p> 
+            <p className="popup__footer">{card.name}</p> 
        </div>
       </div>
     );
