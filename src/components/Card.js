@@ -37,7 +37,7 @@ export default function Card({
         console.log(card);
         onCardDelete(card);
       }  
-    //console.log(card);  
+      
     return (
       <div key={card._id} className="elements__container">
         <img

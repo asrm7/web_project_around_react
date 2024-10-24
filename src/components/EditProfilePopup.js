@@ -5,7 +5,7 @@ import CurrentUserContext from "../contexts/CurrentUserContext.js";
 export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  
+  const [isPatching, setIsPatching] = React.useState(false);
   
   function handleChangeName(e) {
     setName(e.target.value);
@@ -25,6 +25,7 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    setIsPatching(true);
     onUpdateUser({
       name,
       about: description,
@@ -38,8 +39,9 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      intextBtn="Salvar"
-      outtextBtn="Salvando..."
+      textBtn={isPatching ? "Salvando..." : "Salvar"}
+      
+      
     >
       <fieldset className="popup__fieldset">
         <input 

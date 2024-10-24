@@ -3,15 +3,7 @@ import closeButton from "../images/CloseIcon.svg";
 import FormValidator from "./FormValidator";
 
 export default function PopupWithForm(props) {
-  const [buttonText, setButtonText] = useState(props.intextBtn);
   
-  const handleClick = () => {
-        setButtonText(props.outtextBtn);
- 
-        setTimeout(() => {
-            setButtonText(props.intextBtn);
-        }, 2000); // Reverts back to 'Submit' after 2 seconds
-  };
   
   return (
     <section
@@ -28,7 +20,6 @@ export default function PopupWithForm(props) {
            name={props.name}
            onSubmit={(e) => {
             e.preventDefault();
-             console.log("Evento onSubmit disparado corretamente");  
              props.onSubmit(e);
            }}
          >
@@ -37,9 +28,8 @@ export default function PopupWithForm(props) {
            <button 
              className="popup__button" 
              type="submit"
-             onClick={handleClick}
             >
-             {buttonText}
+             {props.textBtn}
            </button>
          </form>
        </div>

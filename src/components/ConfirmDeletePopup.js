@@ -6,8 +6,11 @@ export default function ConfirmDeletePopup({
   onClose,
   onConfirmDelete,
 }) {
+  const [isPatching, setIsPatching] = React.useState(false);
+
   function handleSubmit(e) {
     e.preventDefault();
+    setIsPatching(true);
     onConfirmDelete(); 
   }
 
@@ -18,8 +21,8 @@ export default function ConfirmDeletePopup({
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      intextBtn="Sim"
-      outtextBtn="Excluindo..."
+      textBtn={isPatching ? "Excluindo..." : "Sim"}
+      
     >
       
     </PopupWithForm>

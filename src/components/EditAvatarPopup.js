@@ -6,14 +6,14 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
   const avatarRef = useRef();
   const [link, setLink] = useState("");
   const currentUser = useContext(CurrentUserContext);
-  
+  const [isPatching, setIsPatching] = React.useState(false);
   React.useEffect(() => {
     setLink(currentUser.avatar);
   }, [currentUser]);
 
   function handleSubmit(e) {
     e.preventDefault();
-
+    setIsPatching(true);
     onUpdateAvatar({
       avatar: avatarRef.current.value, 
     });
@@ -26,8 +26,8 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      intextBtn="Salvar"
-      outtextBtn="Salvando..."
+      textBtn={isPatching ? "Salvando..." : "Salvar"}
+      
     >
       <fieldset className="popup__fieldset">
          <input

@@ -99,8 +99,7 @@ export default function App() {
       .then(() => {
         // Atualiza o estados dos cards
         setCards((state) => state.filter((c) => c._id !== cardToDelete._id));
-        console.log("Cartao eliminado corretamente");
-        closeAllPopups(); // Fechas os popups
+        closeAllPopups(); // Fecha os popups
       })
       .catch((err) => console.error(`Erro ao eliminar o cartao: ${err}`));
   }
