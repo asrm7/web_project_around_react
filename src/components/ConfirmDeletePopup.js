@@ -11,7 +11,9 @@ export default function ConfirmDeletePopup({
   function handleSubmit(e) {
     e.preventDefault();
     setIsPatching(true);
-    onConfirmDelete(); 
+    onConfirmDelete().finally(() => {
+      setIsPatching(false);
+    }); 
   }
 
   return (

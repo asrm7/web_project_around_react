@@ -28,40 +28,29 @@ export default function App() {
   const handleEditProfileClick = () => {
     setIsEditProfilePopupOpen(true);
   }
-  function handleUpdateUser({ name, about }) {
-    api
-      .updateUserProfile(name, about)
-      .then((updatedUserData) => {
-        setCurrentUser(updatedUserData);
-        closeAllPopups();
-      })
-      .catch((err) => {
-        console.error(`Erro ao atualizar o perfil: ${err}`); // Se há um erro, será exibido no console;
-      });
-  }
-  function handleUpdateAvatar({ avatar }) {
-    api
-      .updateAvatar(avatar)
-      .then((updatedUserData) => {
-        setCurrentUser(updatedUserData);
-        closeAllPopups();
-      })
-      .catch((err) => {
-        console.error(`Erro ao atualizar o avatar: ${err}`); // Se há um erro, será exibido no console;
-      });
-  }
+  
+  
+  const handleUpdateUser = async ({ name, about }) => {
+    return await api.updateUserProfile(name, about).then((updatedUserData) => {
+      setCurrentUser(updatedUserData);
+      closeAllPopups();
+    });
+  };
+  
+  const handleUpdateAvatar = async ({ avatar }) => {
+    return await api.updateAvatar(avatar).then((updatedUserData) => {
+      setCurrentUser(updatedUserData);
+      closeAllPopups();
+    });
+  };
 
-  function handleAddPlaceSubmit({ link, name }) {
-    api
-      .createCard(link, name)
-      .then((newCard) => {
-        setCards([newCard, ...cards]); // Atualiza o novo card
-        closeAllPopups();
-      })
-      .catch((err) => {
-        console.error(`Erro ao adicionar um novo card ${err}`); // Se há um erro, será exibido no console;
-      });
-  }
+  
+  const handleAddPlaceSubmit = async ({ link, name }) => {
+    return await api.createCard(link, name).then((newCard) => {
+      setCards([newCard, ...cards]);
+      closeAllPopups();
+    });
+  };
 
   function handleDeletePopupClick(card) {
     setCardToDelete(card); // Armazena o card que se deseja eliminar
@@ -89,20 +78,15 @@ export default function App() {
       .catch((err) => console.error(`Erro ao dar like/deslike: ${err}`));
   }
 
-  function handleCardDelete(card) {
-    if (!cardToDelete) {
-      return;
-    }
-
-    api
-      .deleteCard(cardToDelete._id)
-      .then(() => {
-        // Atualiza o estados dos cards
+  
+  const handleCardDelete = () => {
+    if (cardToDelete) {
+      return api.deleteCard(cardToDelete?._id).then(() => {
         setCards((state) => state.filter((c) => c._id !== cardToDelete._id));
-        closeAllPopups(); // Fecha os popups
-      })
-      .catch((err) => console.error(`Erro ao eliminar o cartao: ${err}`));
-  }
+        closeAllPopups();
+      });
+    }
+  };
   const handleAddPlaceClick = () => {
     setIsAddPlacePopupOpen(true);
 }

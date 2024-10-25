@@ -1,11 +1,11 @@
-import React, { useState, useRef, useContext } from "react";
+import React  from "react";
 import PopupWithForm from "./PopupWithForm";
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
 
 export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
-  const avatarRef = useRef();
-  const [link, setLink] = useState("");
-  const currentUser = useContext(CurrentUserContext);
+  const avatarRef = React.useRef();
+  const [link, setLink] = React.useState("");
+  const currentUser = React.useContext(CurrentUserContext);
   const [isPatching, setIsPatching] = React.useState(false);
   React.useEffect(() => {
     setLink(currentUser.avatar);
@@ -16,6 +16,8 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
     setIsPatching(true);
     onUpdateAvatar({
       avatar: avatarRef.current.value, 
+    }).finally(() => {
+      setIsPatching(false);
     });
   }
 

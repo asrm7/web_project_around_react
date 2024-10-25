@@ -4,7 +4,7 @@ import edit_profile from '../images/EditButton.svg';
 import add_card from '../images/addButton.svg';
 import Card from "./Card";
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 
 export default function Main({
    onEditAvatarClick,

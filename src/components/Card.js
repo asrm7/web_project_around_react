@@ -34,7 +34,6 @@ export default function Card({
       }
     
       function handleCardDelete() {
-        console.log(card);
         onCardDelete(card);
       }  
       

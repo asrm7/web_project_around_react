@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
 
 export default function AddPlacePopup({ isOpen, onClose, onAddPlaceSubmit }) {
-  const [title, setTitle] = useState("");
-  const [link, setLink] = useState("");
+  const [title, setTitle] = React.useState("");
+  const [link, setLink] = React.useState("");
   const [isPatching, setIsPatching] = React.useState(false);
   function handleChangeTitle(e) {
     setTitle(e.target.value);
@@ -20,6 +20,10 @@ export default function AddPlacePopup({ isOpen, onClose, onAddPlaceSubmit }) {
     onAddPlaceSubmit({
       name: title,
       link,
+    }).finally(() => {
+      setIsPatching(false);
+      setTitle("");
+      setLink("");
     });
   }
 

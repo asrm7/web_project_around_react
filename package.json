@@ -1,6 +1,9 @@
 {
   "name": "web_project_around_react",
   "version": "0.1.0",
+  "repository": {
+   "url": "git+https://github.com/asrm7/web_project_around_react.git"
+ },
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -39,6 +42,6 @@
   },
   "devDependencies": {
     "gh-pages": "^6.1.1"
-  },
-   "homepage": "https://{asrm7}.github.io/{web_project_around_react}"
+  }
+  
 }

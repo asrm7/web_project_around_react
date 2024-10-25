@@ -1,10 +1,6 @@
-import React, { useState } from 'react';
 import closeButton from "../images/CloseIcon.svg";
-import FormValidator from "./FormValidator";
 
 export default function PopupWithForm(props) {
-  
-  
   return (
     <section
       className={`popup popup_${props.name} ${
@@ -19,7 +15,6 @@ export default function PopupWithForm(props) {
            className="popup__fieldset"
            name={props.name}
            onSubmit={(e) => {
-            e.preventDefault();
              props.onSubmit(e);
            }}
          >

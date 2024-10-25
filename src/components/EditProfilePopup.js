@@ -1,10 +1,10 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import PopupWithForm from "./PopupWithForm";
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
 
 export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
+  const [name, setName] = React.useState("");
+  const [description, setDescription] = React.useState("");
   const [isPatching, setIsPatching] = React.useState(false);
   
   function handleChangeName(e) {
@@ -16,7 +16,7 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   }
 
   
-  const currentUser = useContext(CurrentUserContext);
+  const currentUser = React.useContext(CurrentUserContext);
 
   React.useEffect(() => {
     setName(currentUser.name);
@@ -29,6 +29,8 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
     onUpdateUser({
       name,
       about: description,
+    }).finally(() => {
+      setIsPatching(false);
     });
   }
 
